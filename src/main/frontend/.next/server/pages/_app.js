@@ -130,16 +130,6 @@ const Footer = () => {
           className: "m-b-30",
           children: [/*#__PURE__*/jsx_runtime_.jsx("h5", {
             className: "m-b-20",
-            children: "Address"
-          }), /*#__PURE__*/jsx_runtime_.jsx("p", {
-            children: "71 Amsteroum Avenue Cronish Night, NY 35098"
-          })]
-        }), /*#__PURE__*/(0,jsx_runtime_.jsxs)(external_reactstrap_.Col, {
-          lg: "3",
-          md: "6",
-          className: "m-b-30",
-          children: [/*#__PURE__*/jsx_runtime_.jsx("h5", {
-            className: "m-b-20",
             children: "Phone"
           }), /*#__PURE__*/(0,jsx_runtime_.jsxs)("p", {
             children: ["Reception : +205 123 4567 ", /*#__PURE__*/jsx_runtime_.jsx("br", {}), "Office : +207 235 7890"]
@@ -162,7 +152,7 @@ const Footer = () => {
               href: "https://www.wrappixel.com",
               children: /*#__PURE__*/jsx_runtime_.jsx("a", {
                 className: "link",
-                children: "wrappixel.com"
+                children: "www.naver.com"
               })
             })]
           })]
