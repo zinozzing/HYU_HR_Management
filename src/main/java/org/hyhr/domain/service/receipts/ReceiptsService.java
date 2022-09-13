@@ -6,6 +6,8 @@ import org.hyhr.web.dto.ReceiptsSaveRequestDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class ReceiptsService {
@@ -15,4 +17,9 @@ public class ReceiptsService {
     public Long save(ReceiptsSaveRequestDto requestDto){
         return receiptsRepository.save(requestDto.toEntity()).getId();
     }
+
+    // TODO api for the list of receipts
+//    public Long saveAll(List<ReceiptsSaveRequestDto> requestDtos){
+//        return receiptsRepository.saveAll(requestDtos.toEntity());
+//    }
 }

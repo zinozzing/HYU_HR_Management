@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 public class ReceiptsApiController {
@@ -16,4 +18,9 @@ public class ReceiptsApiController {
     public Long save(@RequestBody ReceiptsSaveRequestDto requestDto){
         return receiptsService.save(requestDto);
     }
+
+    // TODO api for the list of receipts
+//    public Long saveAll(@RequestBody List<ReceiptsSaveRequestDto> requestDtos){
+//        return receiptsService.saveAll(requestDtos);
+//    }
 }
