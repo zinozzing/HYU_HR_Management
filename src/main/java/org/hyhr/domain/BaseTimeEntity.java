@@ -1,4 +1,4 @@
-package org.hyhr.domain.receipts;
+package org.hyhr.domain;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
