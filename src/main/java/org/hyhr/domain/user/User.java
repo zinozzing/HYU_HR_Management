@@ -1,24 +1,26 @@
-package org.hyhr.domain.receipts;
+package org.hyhr.domain.user;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
 @Entity
-public class Receipts {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // TODO I think it should be indexed.
     @Column(nullable = false)
-    private String title;
+    private String email;
 
     @Column(nullable = false)
-    private String uploader;
+    private int authority;
 
-    // TODO 분류(개파, 엠티 등 카테고리)
-    // TODO 여러 파일 업로드 기능
+    @Column(nullable = false)
+    private LocalDateTime signUpDate;
 }
