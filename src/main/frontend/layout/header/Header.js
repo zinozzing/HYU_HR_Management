@@ -22,9 +22,9 @@ const Header = () => {
     <div className="topbar" id="top">
       <div className="header6">
         <Container className="po-relative">
-          <Navbar className="navbar-expand-lg h6-nav-bar">
+          <Navbar className="navbarexpand-lg h6-nav-bar">
             <NavbarBrand href="/">
-              <Image src={logo} alt="wrapkit" />
+              <Image src={logo} alt="HYU" />
             </NavbarBrand>
             <NavbarToggler onClick={toggle}>
               <span className="ti-menu"></span>
@@ -36,7 +36,7 @@ const Header = () => {
               id="h6-info"
             >
               <Nav navbar className="ml-auto">
-                <NavItem>
+                {/* <NavItem>
                   <Link href="/">
                     <a
                       className={
@@ -48,7 +48,7 @@ const Header = () => {
                       Custom Components
                     </a>
                   </Link>
-                </NavItem>
+                </NavItem> */}
                 <NavItem>
                   <Link href="/basic">
                     <a
@@ -58,18 +58,14 @@ const Header = () => {
                           : "nav-link"
                       }
                     >
-                      Basic-Components
+                      기타 NAV
                     </a>
                   </Link>
                 </NavItem>
               </Nav>
               <div className="act-buttons">
-                <NavLink
-                  href="https://wrappixel.com/templates/nextkit-nextjs-free-uikit"
-                  className="btn btn-light font-14"
-                  target="_blank"
-                >
-                  Download Free
+                <NavLink className="btn btn-light font-14" target="_blank">
+                  로그인
                 </NavLink>
               </div>
             </Collapse>
