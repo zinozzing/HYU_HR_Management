@@ -3,14 +3,14 @@ package org.hyhr.domain.receipts;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hyhr.domain.BaseTimeEntity;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Getter
 @NoArgsConstructor
 @Entity
-public class Receipts {
+public class Receipts extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,6 +23,11 @@ public class Receipts {
 
     @Builder
     public Receipts(String title, String uploader){
+        this.title = title;
+        this.uploader = uploader;
+    }
+
+    public void update(String title, String uploader){
         this.title = title;
         this.uploader = uploader;
     }

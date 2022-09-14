@@ -1,8 +1,9 @@
-package org.hyhr.domain.user;
+package org.hyhr.domain.users;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hyhr.domain.BaseTimeEntity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -10,7 +11,7 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Users {
+public class Users extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,6 +20,7 @@ public class Users {
     @Column(nullable = false)
     private String email;
 
+    // authority: DEVELOPER(all), MANAGER(management), MEMBER(watch)
     @Column(nullable = false)
     private String authority;
 
@@ -27,6 +29,12 @@ public class Users {
 
     @Builder
     public Users(String email, String authority, LocalDate signUpDate){
+        this.email = email;
+        this.authority = authority;
+        this.signUpDate = signUpDate;
+    }
+
+    public void update(String email, String authority, LocalDate signUpDate){
         this.email = email;
         this.authority = authority;
         this.signUpDate = signUpDate;
