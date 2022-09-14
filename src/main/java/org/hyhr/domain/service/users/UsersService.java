@@ -22,7 +22,7 @@ public class UsersService {
     @Transactional
     public Long update(Long id, UsersUpdateRequestDto requestDto){
         Users users = usersRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("There is no user. id=" + id));
-        users.update(requestDto.getEmail(), requestDto.getAuthority(), requestDto.getSignUpDate());
+        users.update(requestDto.getEmail(), requestDto.getSignUpDate(), requestDto.getRole());
 
         return id;
     }

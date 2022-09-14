@@ -20,23 +20,32 @@ public class Users extends BaseTimeEntity {
     @Column(nullable = false)
     private String email;
 
+    // TODO authority 부분 role 수정 후 지우기
     // authority: DEVELOPER(all), MANAGER(management), MEMBER(watch)
-    @Column(nullable = false)
-    private String authority;
+//    @Column(nullable = false)
+//    private String authority;
 
     @Column(nullable = false)
     private LocalDate signUpDate;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
+
     @Builder
-    public Users(String email, String authority, LocalDate signUpDate){
+    public Users(String email, LocalDate signUpDate, Role role){
         this.email = email;
-        this.authority = authority;
         this.signUpDate = signUpDate;
+        this.role = role;
     }
 
-    public void update(String email, String authority, LocalDate signUpDate){
+    public void update(String email, LocalDate signUpDate, Role role){
         this.email = email;
-        this.authority = authority;
         this.signUpDate = signUpDate;
+        this.role = role;
+    }
+
+    public String getRoleKey(){
+        return this.role.getKey();
     }
 }

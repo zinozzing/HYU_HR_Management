@@ -3,6 +3,7 @@ package org.hyhr.web.dto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hyhr.domain.users.Role;
 
 import java.time.LocalDate;
 
@@ -10,13 +11,13 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class UsersUpdateRequestDto {
     private String email;
-    private String authority;
     private LocalDate signUpDate;
+    private Role role;
 
     @Builder
-    public UsersUpdateRequestDto(String email, String authority, LocalDate signUpDate){
+    public UsersUpdateRequestDto(String email, LocalDate signUpDate, Role role){
         this.email = email;
-        this.authority = authority;
         this.signUpDate = signUpDate;
+        this.role = role;
     }
 }
