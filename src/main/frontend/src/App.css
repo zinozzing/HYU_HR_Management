@@ -1,7 +1,25 @@
-.App-logo {
-  height: 5vh;
-  width: 6vw;
-  pointer-events: none;
+@font-face {
+  font-family: "KyoboHandwriting2020A";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/KyoboHandwriting2020A.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SLEIGothicTTF";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SLEIGothicTTF.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -10,13 +28,22 @@
   }
 }
 
+.App-logo {
+  height: 5vh;
+  width: 6vw;
+  pointer-events: none;
+}
+
+header {
+  font-family: "SLEIGothicTTF";
+}
+
 .App-header {
   background-color: #282c34;
   height: 7vh;
   display: flex;
   align-items: center;
   /* font-size: calc(10px + 2vmin); */
-
   color: white;
 }
 
@@ -27,15 +54,16 @@
   align-items: center;
   justify-content: center;
   color: white;
+  background-image: url("sub_visual_01.jpg");
 }
 
 .sec2 {
-  background-color: whitesmoke;
+  background-color: #2d377b;
   height: 50vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: black;
+  color: white;
 }
 
 .sec3 {
@@ -53,19 +81,20 @@
 
 ul {
   width: 100vw;
-  height: 7vh;
+  height: 5vh;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   padding: 0;
   margin: 0;
   color: white;
-  background-color: #2d377b;
+  background-color: white;
 }
 
 li {
   list-style: none;
   margin: 0 1rem;
+  font-family: "Pretendard-Regular";
 }
 
 footer {
@@ -77,12 +106,14 @@ footer {
   justify-content: center;
   color: #666666;
   background-color: #2c2d30;
+  font-size: small;
 }
 
 .footer-box {
   display: flex;
   text-align: center;
 }
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

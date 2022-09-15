@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function App() {
-  // 요청받은 정보를 담아줄 변수 선언
+  // eslint-disable-next-line
   const [testStr, setTestStr] = useState("");
 
   // 변수 초기화
@@ -34,10 +34,10 @@ function App() {
             <a href="/">Home</a>
           </li>
           <li>
-            <a href="/oatuh2/authorization/google">로그인</a>
+            <a href="http://localhost:8080/api">로그인</a>
           </li>
           <li>
-            <a href="/">한양대학교 홈</a>
+            <a href="https://www.hanyang.ac.kr/">한양대학교 홈</a>
           </li>
         </ul>
       </nav>
