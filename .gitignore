@@ -26,3 +26,4 @@ yarn-error.log*
 # backend
 .gradle
 .idea
+application-oauth.properties

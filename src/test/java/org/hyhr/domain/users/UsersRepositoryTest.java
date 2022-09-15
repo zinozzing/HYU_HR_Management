@@ -31,13 +31,13 @@ public class UsersRepositoryTest {
     public void usersSaveAndLoad(){
         // given
         String email = "abc@cd.com";
-        String authority = "WebManager";
         LocalDate signUpDate = LocalDate.parse("2022-09-13");
+        Role role = Role.MEMBER;
 
         usersRepository.save(Users.builder()
                 .email(email)
-                .authority(authority)
                 .signUpDate(signUpDate)
+                .role(role)
                 .build());
         // when
         List<Users> usersList = usersRepository.findAll();
@@ -45,8 +45,8 @@ public class UsersRepositoryTest {
         // then
         Users users = usersList.get(0);
         Assertions.assertThat(users.getEmail()).isEqualTo(email);
-        Assertions.assertThat(users.getAuthority()).isEqualTo(authority);
-        Assertions.assertThat(users.getSignUpDate()).isEqualTo(signUpDate);
+        Assertions.assertThat(users.getRole()).isEqualTo(role);
+        Assertions.assertThat(users.getRole()).isEqualTo(role);
     }
 
     @Test
@@ -55,8 +55,8 @@ public class UsersRepositoryTest {
         LocalDateTime now = LocalDateTime.parse("2022-09-14 11:45:00.000", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
         usersRepository.save(Users.builder()
                 .email("abc@de.com")
-                .authority("MEMBER")
                 .signUpDate(LocalDate.parse("2022-09-14"))
+                .role(Role.MEMBER)
                 .build());
 
         // when

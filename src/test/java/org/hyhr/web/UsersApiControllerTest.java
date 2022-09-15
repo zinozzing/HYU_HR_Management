@@ -1,6 +1,7 @@
 package org.hyhr.web;
 
 import org.assertj.core.api.Assertions;
+import org.hyhr.domain.users.Role;
 import org.hyhr.domain.users.Users;
 import org.hyhr.domain.users.UsersRepository;
 import org.hyhr.web.dto.UsersSaveRequestDto;
@@ -44,12 +45,12 @@ public class UsersApiControllerTest {
     public void users_save() throws Exception{
         // given
         String email = "abc@de.com";
-        String authority = "MEMBER";
         LocalDate signUpDate = LocalDate.parse("2022-09-14");
+        Role role = Role.MEMBER;
         UsersSaveRequestDto requestDto = UsersSaveRequestDto.builder()
                 .email(email)
-                .authority(authority)
                 .signUpDate(signUpDate)
+                .role(role)
                 .build();
         String url = "http://localhost:" + port + "/api/v1/user-save";
 
@@ -62,7 +63,7 @@ public class UsersApiControllerTest {
 
         List<Users> all = usersRepository.findAll();
         Assertions.assertThat(all.get(0).getEmail()).isEqualTo(email);
-        Assertions.assertThat(all.get(0).getAuthority()).isEqualTo(authority);
+        Assertions.assertThat(all.get(0).getRole()).isEqualTo(role);
         Assertions.assertThat(all.get(0).getSignUpDate()).isEqualTo(signUpDate);
     }
 
@@ -71,19 +72,20 @@ public class UsersApiControllerTest {
         // given
         Users savedUsers = usersRepository.save(Users.builder()
                 .email("abc@de.com")
-                .authority("MEMBER")
+//                .authority("MEMBER")
                 .signUpDate(LocalDate.parse("2022-09-14"))
+                .role(Role.MEMBER)
                 .build());
 
         Long updateId = savedUsers.getId();
         String expectedEmail = "fgh@ij.com";
-        String expectedAuthority = "MANAGER";
         LocalDate expectedSignUpDate = LocalDate.parse("2022-10-14");
+        Role expectedRole = Role.MANAGER;
 
         UsersUpdateRequestDto requestDto = UsersUpdateRequestDto.builder()
                 .email(expectedEmail)
-                .authority(expectedAuthority)
                 .signUpDate(expectedSignUpDate)
+                .role(expectedRole)
                 .build();
 
         String url = "http://localhost:" + port + "/api/v1/users/" + updateId;
@@ -98,7 +100,7 @@ public class UsersApiControllerTest {
         Assertions.assertThat(responseEntity.getBody()).isGreaterThan(0L);
         List<Users> all = usersRepository.findAll();
         Assertions.assertThat(all.get(0).getEmail()).isEqualTo(expectedEmail);
-        Assertions.assertThat(all.get(0).getAuthority()).isEqualTo(expectedAuthority);
+        Assertions.assertThat(all.get(0).getRole()).isEqualTo(expectedRole);
         Assertions.assertThat(all.get(0).getSignUpDate()).isEqualTo(expectedSignUpDate);
 
 

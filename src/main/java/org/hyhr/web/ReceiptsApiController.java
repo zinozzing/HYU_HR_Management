@@ -26,6 +26,7 @@ public class ReceiptsApiController {
     public ReceiptsResponseDto findById(@PathVariable Long id){
         return receiptsService.findById(id);
     }
+
     @PutMapping("/api/v1/receipts/{id}")
     public Long update(@PathVariable Long id, @RequestBody ReceiptsUpdateRequestDto requestDto){
         return receiptsService.update(id, requestDto);
