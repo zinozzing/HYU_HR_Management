@@ -1,8 +1,27 @@
 import logo from "./logo.svg";
 import hy_logo from "./hy_logo.png";
 import "./App.css";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function App() {
+  // 요청받은 정보를 담아줄 변수 선언
+  const [testStr, setTestStr] = useState("");
+
+  // 변수 초기화
+  function callback(str) {
+    setTestStr(str);
+  }
+
+  // 첫 번째 렌더링을 마친 후 실행
+  useEffect(() => {
+    axios({
+      url: "/home",
+      method: "GET",
+    }).then(res => {
+      callback(res.data);
+    });
+  }, []);
   return (
     <div className="App">
       <header className="App-header">
@@ -15,7 +34,7 @@ function App() {
             <a href="/">Home</a>
           </li>
           <li>
-            <a href="/">로그인</a>
+            <a href="/oatuh2/authorization/google">로그인</a>
           </li>
           <li>
             <a href="/">한양대학교 홈</a>
