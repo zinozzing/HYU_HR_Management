@@ -26,6 +26,7 @@ import java.util.List;
 
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
@@ -60,7 +61,7 @@ public class ReceiptsApiControllerTest {
     }
 
     @Test
-    @WithMockUser(roles="MEMBER")
+    @WithMockUser(roles = "GUEST")
     public void receipts_save() throws Exception{
         // given
         String title = "title";
@@ -88,7 +89,7 @@ public class ReceiptsApiControllerTest {
     }
 
     @Test
-    @WithMockUser(roles="MEMBER")
+    @WithMockUser(roles = "MEMBER")
     public void receipts_edit() throws Exception{
         // given
         Receipts savedReceipts = receiptsRepository.save(Receipts.builder()
@@ -111,7 +112,7 @@ public class ReceiptsApiControllerTest {
 
         // when
 //        ResponseEntity<Long> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Long.class)
-        mvc.perform(post(url)
+        mvc.perform(put(url)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(new ObjectMapper().writeValueAsString(requestDto)))
                 .andExpect(status().isOk());
