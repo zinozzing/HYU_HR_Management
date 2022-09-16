@@ -20,7 +20,7 @@ import java.util.Collections;
 @RequiredArgsConstructor
 @Service
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
-    private final UsersRepository userRepository;
+    private final UsersRepository usersRepository;
     private final HttpSession httpSession;
 
     @Override
@@ -38,11 +38,11 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         return new DefaultOAuth2User(Collections.singleton(new SimpleGrantedAuthority(user.getRoleKey())), attributes.getAttributes(), attributes.getNameAttributeKey());
     }
     private Users saveOrUpdate(OAuthAttributes attributes){
-        Users user = userRepository.findByEmail(attributes.getEmail())
-//                .map(entity -> entity.update(attributes.getEmail())).orElse(attributes.toEntity());
+        Users user = usersRepository.findByEmail(attributes.getEmail())
+//                .map(entity -> entity.update(attributes.getEmail(), )).orElse(attributes.toEntity());
                 // Nothing to update for the currently supported features.
                 .orElse(attributes.toEntity());
 
-        return userRepository.save(user);
+        return usersRepository.save(user);
     }
 }
