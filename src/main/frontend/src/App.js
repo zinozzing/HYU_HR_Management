@@ -3,17 +3,16 @@ import hy_logo from "./hy_logo.png";
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Login from "./Login";
 
 function App() {
   // eslint-disable-next-line
   const [testStr, setTestStr] = useState("");
 
-  // 변수 초기화
   function callback(str) {
     setTestStr(str);
   }
 
-  // 첫 번째 렌더링을 마친 후 실행
   useEffect(() => {
     axios({
       url: "/home",
@@ -34,7 +33,10 @@ function App() {
             <a href="/">Home</a>
           </li>
           <li>
-            <a href="http://localhost:8080/api">로그인</a>
+            <div>
+              <Login />
+            </div>
+            {/* <a href="http://localhost:8080/api">로그인</a> */}
           </li>
           <li>
             <a href="https://www.hanyang.ac.kr/">한양대학교 홈</a>
