@@ -30,6 +30,13 @@ public class ReceiptsService {
 
         return id;
     }
+    @Transactional
+    public void delete(Long id){
+        // check for existence first.
+        receiptsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("There is no receipt. id=" + id));
+        // then delete.
+        receiptsRepository.deleteById(id);
+    }
 
     public ReceiptsResponseDto findById(Long id){
         Receipts entity = receiptsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("There is no receipt. id=" + id));
