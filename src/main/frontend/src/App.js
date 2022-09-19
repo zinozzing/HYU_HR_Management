@@ -21,6 +21,7 @@ function App() {
       callback(res.data);
     });
   }, []);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -63,7 +64,7 @@ function App() {
             </p>
             <p className="tel">02.2220.1807</p>
             <p className="copy">
-              COPYRIGHT ⓒ 2019 HANYANG UNIVERSITY. ALL RIGHTS RESERVED.
+              COPYRIGHT ⓒ 2022 HANYANG UNIVERSITY. ALL RIGHTS RESERVED.
             </p>
           </div>
         </div>
