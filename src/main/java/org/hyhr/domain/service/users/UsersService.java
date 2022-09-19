@@ -26,6 +26,13 @@ public class UsersService {
 
         return id;
     }
+    @Transactional
+    public void delete(Long id){
+        // check for existence first.
+        Users users = usersRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("There is no user. id=" + id));
+        // then delete.
+        usersRepository.deleteById(id);
+    }
 
     public UsersResponseDto findById(Long id){
         Users entity = usersRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("There is no user. id=" + id));

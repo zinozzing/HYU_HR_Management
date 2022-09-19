@@ -140,15 +140,7 @@ public ObjectMapper objectMapper() {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(requestDto)))
                 .andExpect(status().isOk());
-/*
-@Bean
-public ObjectMapper objectMapper() {
-  ObjectMapper objectMapper = new ObjectMapper();
-  objectMapper.registerModule(new JavaTimeModule());
-  objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-  return objectMapper;
-}
- */
+
         // then
 //        Assertions.assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
 //        Assertions.assertThat(responseEntity.getBody()).isGreaterThan(0L);
