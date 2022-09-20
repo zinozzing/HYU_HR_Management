@@ -35,3 +35,12 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### node
+/node_modules
+
+# backend
+.gradle
+.idea
+application-oauth.properties
+
