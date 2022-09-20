@@ -40,14 +40,22 @@ function App() {
           </li>
         </ul>
       </nav>
-      <section className="sec1">
-        <h1>한양대학교</h1>
-      </section>
+      <section className="sec1">{/* <h1>한양대학교</h1> */}</section>
       <section className="sec2">
-        <h1>한양대학교</h1>
+        <h1>운영진이신가요?</h1>
+        <span className="mainpage-line-first"></span>
+        <h3>어쩌고저쩌고</h3>
+        <a href="#" className="btn blue">
+          Click ME!
+        </a>
       </section>
       <section className="sec3">
-        <h1>한양대학교</h1>
+        <h1>회원이신가요?</h1>
+        <span className="mainpage-line-second"></span>
+        <h3>어쩌고저쩌고</h3>
+        <a href="#" className="btn blue black-font">
+          Click ME!
+        </a>
       </section>
       <footer>
         <div className="logo">
