@@ -2,8 +2,8 @@ import logo from "./logo.svg";
 import hy_logo from "./hy_logo.png";
 import "./App.css";
 import React, { useState, useEffect } from "react";
-import { Link, Route, BrowserRouter as Router } from "react-router-dom";
-import Login from "./Login";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Login from "./pages/Login";
 import axios from "axios";
 
 function App() {
@@ -29,21 +29,17 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         한양대학교 동아리 관리 홈페이지
       </header>
-      <Router>
-        <nav>
-          <ul>
-            <li>
-              <a href="/">Home</a>
-            </li>
-            <Link to="/login">
-              <li>Login</li>
-            </Link>
-            <li>
-              <a href="https://www.hanyang.ac.kr/">한양대학교 홈</a>
-            </li>
-          </ul>
-        </nav>
-      </Router>
+      <nav>
+        <ul>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <Link to="/login">Login</Link>
+          <li>
+            <a href="https://www.hanyang.ac.kr/">한양대학교 홈</a>
+          </li>
+        </ul>
+      </nav>
       <section className="sec1">
         <h1>한양대학교</h1>
       </section>

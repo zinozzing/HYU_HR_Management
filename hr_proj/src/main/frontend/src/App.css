@@ -38,6 +38,10 @@ header {
   font-family: "SLEIGothicTTF";
 }
 
+body {
+  margin: 0;
+}
+
 .App-header {
   background-color: #282c34;
   height: 7vh;
