@@ -1,23 +1,22 @@
-import React, { useState, useEffect } from "react";
-// eslint-disable-next-line
 import logo from "./logo.svg";
+import hy_logo from "./hy_logo.png";
 import "./App.css";
+import React, { useState, useEffect } from "react";
+import { Link, Route, BrowserRouter as Router } from "react-router-dom";
+import Login from "./Login";
 import axios from "axios";
 
 function App() {
-  // 요청받은 정보를 담아줄 변수 선언
   // eslint-disable-next-line
   const [testStr, setTestStr] = useState("");
 
-  // 변수 초기화
   function callback(str) {
     setTestStr(str);
   }
 
-  // 첫 번째 렌더링을 마친 후 실행
   useEffect(() => {
     axios({
-      url: "/api/hello",
+      url: "/",
       method: "GET",
     }).then(res => {
       callback(res.data);
@@ -26,7 +25,51 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">{testStr}</header>
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        한양대학교 동아리 관리 홈페이지
+      </header>
+      <Router>
+        <nav>
+          <ul>
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <Link to="/login">
+              <li>Login</li>
+            </Link>
+            <li>
+              <a href="https://www.hanyang.ac.kr/">한양대학교 홈</a>
+            </li>
+          </ul>
+        </nav>
+      </Router>
+      <section className="sec1">
+        <h1>한양대학교</h1>
+      </section>
+      <section className="sec2">
+        <h1>한양대학교</h1>
+      </section>
+      <section className="sec3">
+        <h1>한양대학교</h1>
+      </section>
+      <footer>
+        <div className="logo">
+          <img src={hy_logo} className="logo" alt="logo" />
+        </div>
+        <div className="footer-box">
+          <div className="copyright">
+            <p className="addr">
+              서울특별시 성동구 왕십리로 222 경제금융관 506호
+            </p>
+            <p className="tel">02.2220.1807</p>
+            <p className="copy">
+              COPYRIGHT ⓒ 2022 HANYANG UNIVERSITY. ALL RIGHTS RESERVED.
+            </p>
+          </div>
+        </div>
+        <div className="site"></div>
+      </footer>
     </div>
   );
 }
