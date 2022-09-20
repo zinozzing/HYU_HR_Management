@@ -3,7 +3,8 @@ import hy_logo from "./hy_logo.png";
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import Login from "./pages/Login";
+import Dashboard from "./components/Dashboard";
+import Preferences from "./components/Preferences";
 import axios from "axios";
 
 function App() {
