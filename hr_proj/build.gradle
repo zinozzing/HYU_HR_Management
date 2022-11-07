@@ -40,7 +40,7 @@ dependencies {
 
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
 
-	implementation platform('com.amazonaws:aws-java-sdk-bom:1.12.328')
+	implementation platform('com.amazonaws:aws-java-sdk-bom:1.12.332')
 	implementation 'com.amazonaws:aws-java-sdk-s3'
 	testImplementation 'io.findify:s3mock_2.12:0.2.6'
 }
