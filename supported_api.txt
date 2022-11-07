@@ -1,6 +1,6 @@
 Project: HYU_HR_Management
 
-Class IndexController
+Class WebController
 
 @GetMapping(“/”)
 index.html 연결

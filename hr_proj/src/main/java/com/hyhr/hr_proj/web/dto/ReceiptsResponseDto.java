@@ -8,10 +8,12 @@ public class ReceiptsResponseDto {
     private Long id;
     private String title;
     private String uploader;
+    private String url;
 
     public ReceiptsResponseDto(Receipts entity){
         this.id = entity.getId();
         this.title = entity.getTitle();
         this.uploader = entity.getUploader();
+        this.url = entity.getUrl();
     }
 }

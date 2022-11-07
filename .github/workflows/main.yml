@@ -1,0 +1,109 @@
+# main.yml
+
+env:
+  S3_BUCKET_NAME: build-hyhr    # S3 bucket name
+  PROJECT_NAME: HYU_HR_Management   # github project name
+  CODE_DEPLOY_APP_NAME: hyu-hr-management   # from AWS CodeDeploy
+  CODE_DEPLOY_GROUP_NAME: hyu-hr-management-group   # from AWS CodeDeploy
+
+name: deploy
+
+on:
+  release:
+    types: [published]    # events that triggers workflows - release
+  push:
+    branches: [main]    # github action acts on 'main' branch.
+  workflow_dispatch:  # enable github action that it can be run manually.
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest  # github action script runs on linux(debian).
+    permissions:
+      contents: read
+      packages: write
+
+    environment: deploy # choosing repository's sercret environment.
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3    
+      
+    # - name: Cache JDK
+      
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'corretto'
+        java-version: ${{ secrets.JAVA_VERSION }}
+        
+    - name: Set up NodeJS
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ secrets.NODE_VERSION }}
+        
+    - name: Build React
+      run: |
+        cd ./hr_proj/src/main/frontend
+        npm install
+        CI=false npm run build
+        cd ../../../
+        mkdir -p ./build/resources/main/static
+        cp -r ./src/main/frontend/build ./src/main/resources/static
+      shell: bash
+
+    - name: Grant execute permission for gradlew
+      run: |
+        cd ./hr_proj/
+        chmod +x ./gradlew
+      shell: bash
+      
+    - name: Build with Gradle
+      run: |
+        cd ./hr_proj/
+        ./gradlew clean build -x test
+      shell: bash
+
+    - name: Get current time
+      uses: 1466587594/get-current-time@v2    # uses: used to bring and run the action which is already made by others.
+      id: current-time
+      with:
+        format: YYYY-MM-DDTHH-mm-ss
+        utcOffset: "+09:00"
+        
+    - name: Show Current Time
+      run: echo "CurrentTime=${{steps.currnet-time.outputs.formattedTime}}"   # Show the time as set format.
+      shell: bash
+
+    - name: Generate deployment package # (final)
+      run: |
+        mkdir -p before-deploy
+        cd ./hr_proj/scripts
+        cp *.sh ../../before-deploy/
+        cd ../../
+        cp appspec.yml before-deploy/
+        cp ./hr_proj/build/libs/*.jar before-deploy/
+        cd before-deploy && zip -r before-deploy *
+        cd ../ && mkdir -p deploy
+        mv before-deploy/before-deploy.zip deploy/$PROJECT_NAME.zip
+      shell: bash
+
+    - name: Make zip file
+      run: |
+        cd ./hr_proj/
+        zip -r ./$PROJECT_NAME.zip .
+      shell: bash
+      
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ap-northeast-2    # Seoul
+        
+    - name: Upload to S3
+      run: aws s3 cp --region ap-northeast-2 ./deploy/$PROJECT_NAME.zip s3://$S3_BUCKET_NAME/$PROJECT_NAME/$PROJECT_NAME.zip
+
+    - name: Code Deploy
+      run: aws deploy create-deployment --application-name $CODE_DEPLOY_APP_NAME --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name $CODE_DEPLOY_GROUP_NAME --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=$PROJECT_NAME/$PROJECT_NAME.zip
+      

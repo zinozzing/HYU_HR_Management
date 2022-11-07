@@ -13,10 +13,13 @@ public class UsersResponseDto {
     private LocalDate signUpDate;
     private Role role;
 
+    private String nickname;
+
     public UsersResponseDto(Users entity){
         this.id = entity.getId();
         this.email = entity.getEmail();
         this.signUpDate = entity.getSignUpDate();
         this.role = entity.getRole();
+        this.nickname = entity.getNickname();
     }
 }

@@ -22,14 +22,14 @@ public class UsersService {
     @Transactional
     public Long update(Long id, UsersUpdateRequestDto requestDto){
         Users users = usersRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("There is no user. id=" + id));
-        users.update(requestDto.getEmail(), requestDto.getSignUpDate(), requestDto.getRole());
+        users.update(requestDto.getEmail(), requestDto.getSignUpDate(), requestDto.getRole(), requestDto.getNickname());
 
         return id;
     }
     @Transactional
     public void delete(Long id){
         // check for existence first.
-        Users users = usersRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("There is no user. id=" + id));
+        usersRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("There is no user. id=" + id));
         // then delete.
         usersRepository.deleteById(id);
     }
