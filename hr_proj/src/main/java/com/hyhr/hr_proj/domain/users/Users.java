@@ -32,17 +32,22 @@ public class Users extends BaseTimeEntity {
     @Column(nullable = false)
     private Role role;
 
+    @Column(nullable = true)
+    private String nickname;
+
     @Builder
-    public Users(String email, LocalDate signUpDate, Role role){
+    public Users(String email, LocalDate signUpDate, Role role, String nickname){
         this.email = email;
         this.signUpDate = signUpDate;
         this.role = role;
+        this.nickname = nickname;
     }
 
-    public void update(String email, LocalDate signUpDate, Role role){
+    public void update(String email, LocalDate signUpDate, Role role, String nickname){
         this.email = email;
         this.signUpDate = signUpDate;
         this.role = role;
+        this.nickname = nickname;
     }
 
     public String getRoleKey(){

@@ -21,15 +21,20 @@ public class Receipts extends BaseTimeEntity {
     @Column(nullable = false)
     private String uploader;
 
+    @Column(nullable = false)
+    private String url;
+
     @Builder
-    public Receipts(String title, String uploader){
+    public Receipts(String title, String uploader, String url){
         this.title = title;
         this.uploader = uploader;
+        this.url = url;
     }
 
-    public void update(String title, String uploader){
+    public void update(String title, String uploader, String url){
         this.title = title;
         this.uploader = uploader;
+        this.url = url;
     }
 
     // TODO 분류(개파, 엠티 등 카테고리)

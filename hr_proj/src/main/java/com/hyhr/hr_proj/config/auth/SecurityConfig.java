@@ -23,7 +23,7 @@ public class SecurityConfig{
                     .antMatchers("/", "/css/**", "/images/**", "/js/*", "/h2-console/**", "/profile").permitAll()
 //                    .antMatchers("/api/v1/**").hasRole(Role.DEVELOPER.name())
                     .antMatchers("/api/v1/**").permitAll()
-                    .anyRequest().authenticated()
+//                    .anyRequest().authenticated()
                 .and()
                     .oauth2Login()
                     .defaultSuccessUrl("/", true)

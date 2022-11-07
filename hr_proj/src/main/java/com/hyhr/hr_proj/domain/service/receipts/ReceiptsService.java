@@ -19,14 +19,10 @@ public class ReceiptsService {
         return receiptsRepository.save(requestDto.toEntity()).getId();
     }
 
-    // TODO api for the list of receipts
-//    public Long saveAll(List<ReceiptsSaveRequestDto> requestDtos){
-//        return receiptsRepository.saveAll(requestDtos.toEntity());
-//    }
     @Transactional
     public Long update(Long id, ReceiptsUpdateRequestDto requestDto){
         Receipts receipts = receiptsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("There is no receipt. id=" + id));
-        receipts.update(requestDto.getTitle(), requestDto.getUploader());
+        receipts.update(requestDto.getTitle(), requestDto.getUploader(), requestDto.getUrl());
 
         return id;
     }

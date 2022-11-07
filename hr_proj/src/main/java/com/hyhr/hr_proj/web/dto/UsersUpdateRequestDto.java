@@ -13,11 +13,13 @@ public class UsersUpdateRequestDto {
     private String email;
     private LocalDate signUpDate;
     private Role role;
+    private String nickname;
 
     @Builder
-    public UsersUpdateRequestDto(String email, LocalDate signUpDate, Role role){
+    public UsersUpdateRequestDto(String email, LocalDate signUpDate, Role role, String nickname){
         this.email = email;
         this.signUpDate = signUpDate;
         this.role = role;
+        this.nickname = nickname;
     }
 }

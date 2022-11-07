@@ -14,12 +14,14 @@ public class UsersSaveRequestDto {
     private String email;
     private LocalDate signUpDate;
     private Role role;
+    private String nickname;
 
     @Builder
-    public UsersSaveRequestDto(String email, LocalDate signUpDate, Role role){
+    public UsersSaveRequestDto(String email, LocalDate signUpDate, Role role, String nickname){
         this.email = email;
         this.signUpDate = signUpDate;
         this.role = role;
+        this.nickname = nickname;
     }
 
     public Users toEntity(){
@@ -27,6 +29,7 @@ public class UsersSaveRequestDto {
                 .email(email)
                 .signUpDate(signUpDate)
                 .role(role)
+                .nickname(nickname)
                 .build();
     }
 }

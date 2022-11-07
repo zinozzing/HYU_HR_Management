@@ -17,7 +17,6 @@ import java.util.List;
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ReceiptsRepositoryTest {
-    // TODO blank ReceiptsRepositoryTest
     @Autowired
     ReceiptsRepository receiptsRepository;
 
@@ -31,10 +30,12 @@ public class ReceiptsRepositoryTest {
         // given
         String title = "receipt01";
         String uploader = "abc@cd.com";
+        String testUrl = "http://www.abcde.com/1234.zip";
 
         receiptsRepository.save(Receipts.builder()
                 .title(title)
                 .uploader(uploader)
+                .url(testUrl)
                 .build());
         // when
         List<Receipts> receiptsList = receiptsRepository.findAll();
@@ -43,6 +44,7 @@ public class ReceiptsRepositoryTest {
         Receipts receipts = receiptsList.get(0);
         Assertions.assertThat(receipts.getTitle()).isEqualTo(title);
         Assertions.assertThat(receipts.getUploader()).isEqualTo(uploader);
+        Assertions.assertThat(receipts.getUrl()).isEqualTo(testUrl);
     }
 
     @Test
@@ -52,6 +54,7 @@ public class ReceiptsRepositoryTest {
         receiptsRepository.save(Receipts.builder()
                 .title("title")
                 .uploader("abc@de.com")
+                .url("http://www.abcde.com/1234.zip")
                 .build());
 
         // when
